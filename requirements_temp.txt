@@ -1,0 +1,92 @@
+﻿# Core Django Packages
+Django
+djangorestframework
+django-cors-headers
+django-filter
+
+# Database
+sqlalchemy
+db-sqlite3
+
+# Environment Configuration
+python-decouple
+python-dotenv
+
+# Blockchain & Cryptocurrency
+web3
+cryptography
+
+# QR Code & Image Processing
+qrcode
+Pillow
+
+# API & HTTP
+requests
+httpx
+
+# Task Queue & Caching
+celery
+redis
+
+# Production Server
+gunicorn
+whitenoise
+
+# Validation & Serialization
+pydantic
+pydantic-settings
+
+# JWT Authentication
+PyJWT
+djangorestframework-simplejwt
+
+# Markdown Support
+markdown
+django-markdown
+
+# Pagination
+drf-pagination
+
+# Throttling & Permissions
+django-ratelimit
+
+# Monitoring & Logging
+python-json-logger
+
+# Date/Time Utilities
+python-dateutil
+pytz
+
+# Development & Testing
+pytest
+pytest-django
+factory-boy
+faker
+
+# Code Quality
+black
+flake8
+isort
+pylint
+
+# API Documentation
+drf-yasg
+coreapi
+
+# Security
+django-cors-headers
+django-ratelimit
+django-extensions
+
+# Optional: AI/ML (for future features)
+scikit-learn
+numpy
+pandas
+
+# Optional: IoT & Data Processing
+pyserial
+paho-mqtt
+
+# Utilities
+python-slugify
+shortuuid
