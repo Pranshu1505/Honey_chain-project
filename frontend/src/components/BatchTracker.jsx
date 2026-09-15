@@ -14,7 +14,7 @@ const BatchTracker = ({ token }) => {
 
     const fetchBatches = async () => {
         try {
-            const response = await fetch('http://192.168.1.11:8000/api/batch/', {
+            const response = await fetch('http://localhost:8000/api/batch/', {
                 headers: { 'Authorization': `Token ${token}` }
             });
             const data = await response.json();
@@ -41,13 +41,13 @@ const BatchTracker = ({ token }) => {
         try {
             const headers = { 'Authorization': `Token ${token}` };
 
-            const listRes = await fetch('http://192.168.1.11:8000/api/qr/', { headers });
+            const listRes = await fetch('http://localhost:8000/api/qr/', { headers });
             const listData = await listRes.json();
             const qrList = Array.isArray(listData) ? listData : (listData.results ?? []);
             let qrEntry = qrList.find(q => q.batch === batch.id);
 
             if (!qrEntry) {
-                const createRes = await fetch('http://192.168.1.11:8000/api/qr/', {
+                const createRes = await fetch('http://localhost:8000/api/qr/', {
                     method: 'POST',
                     headers: { ...headers, 'Content-Type': 'application/json' },
                     body: JSON.stringify({ batch: batch.id, code_data: batch.batch_id })
@@ -56,7 +56,7 @@ const BatchTracker = ({ token }) => {
             }
 
             if (!qrEntry.qr_image) {
-                const genRes = await fetch(`http://192.168.1.11:8000/api/qr/${qrEntry.id}/generate/`, {
+                const genRes = await fetch(`http://localhost:8000/api/qr/${qrEntry.id}/generate/`, {
                     method: 'POST',
                     headers
                 });

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 const Login = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('admin');
     const [password, setPassword] = useState('admin123');
@@ -13,7 +15,7 @@ const Login = ({ onLoginSuccess }) => {
         setError('');
 
         try {
-            const response = await fetch('http://192.168.1.11:8000/api/auth/users/login/', {
+            const response = await fetch(`${API_URL}/api/auth/users/login/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })

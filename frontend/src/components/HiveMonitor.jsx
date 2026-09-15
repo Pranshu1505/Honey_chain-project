@@ -13,7 +13,7 @@ const HiveMonitor = ({ token }) => {
 
     const fetchHives = async () => {
         try {
-            const response = await fetch('http://192.168.1.11:8000/api/hive/', {
+            const response = await fetch('http://localhost:8000/api/hive/', {
                 headers: { 'Authorization': `Token ${token}` }
             });
             const data = await response.json();
@@ -27,7 +27,7 @@ const HiveMonitor = ({ token }) => {
 
     const fetchSensorData = async (hiveId) => {
         try {
-            const response = await fetch(`http://192.168.1.11:8000/api/sensor/?hive=${hiveId}`, {
+            const response = await fetch(`http://localhost:8000/api/sensor/?hive=${hiveId}`, {
                 headers: { 'Authorization': `Token ${token}` }
             });
             const data = await response.json();

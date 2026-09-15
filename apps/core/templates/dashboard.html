@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Honey Chain{% endblock %}
+
+{% block page_header %}
+<div class="page-header">
+    <div class="container">
+        <h1>📊 Dashboard</h1>
+        <p>System Overview & Management</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>System Overview</h2>
+    <p>Welcome to the Honey Chain Management Dashboard. Here you can monitor all aspects of your honey production and
+        supply chain.</p>
+</div>
+
+<h2 style="color: #667eea; margin: 40px 0 20px 0;">Key Metrics</h2>
+<div class="grid">
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_beekeepers }}</div>
+        <h3>🧑‍🌾 Beekeepers</h3>
+        <p>Active beekeepers in system</p>
+        <a href="#" class="btn btn-info mt-20">View All</a>
+    </div>
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_hives }}</div>
+        <h3>🐝 Hives</h3>
+        <p>Monitored hives</p>
+        <a href="#" class="btn btn-info mt-20">View All</a>
+    </div>
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_batches }}</div>
+        <h3>🍺 Batches</h3>
+        <p>Honey batches tracked</p>
+        <a href="#" class="btn btn-info mt-20">View All</a>
+    </div>
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_sensors }}</div>
+        <h3>📊 Sensors</h3>
+        <p>IoT sensor readings</p>
+        <a href="#" class="btn btn-info mt-20">View All</a>
+    </div>
+</div>
+
+<div class="card mt-40">
+    <h2>Quick Actions</h2>
+    <div class="grid">
+        <div class="grid-item">
+            <h3>➕ Add New Beekeeper</h3>
+            <p>Register a new beekeeper in the system</p>
+            <a href="#" class="btn btn-primary mt-20">Add</a>
+        </div>
+        <div class="grid-item">
+            <h3>🐝 Register Hive</h3>
+            <p>Add a new hive to monitoring</p>
+            <a href="#" class="btn btn-primary mt-20">Register</a>
+        </div>
+        <div class="grid-item">
+            <h3>🍯 Create Batch</h3>
+            <p>Log a new honey batch</p>
+            <a href="#" class="btn btn-primary mt-20">Create</a>
+        </div>
+        <div class="grid-item">
+            <h3>✅ Quality Test</h3>
+            <p>Record quality test results</p>
+            <a href="#" class="btn btn-primary mt-20">Test</a>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-40">
+    <h2>📈 Recent Activity</h2>
+    {% if recent_batches %}
+    <h3>Latest Batches</h3>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+        <thead>
+            <tr style="background: #f5f5f5; border-bottom: 2px solid #667eea;">
+                <th style="padding: 12px; text-align: left;">Batch ID</th>
+                <th style="padding: 12px; text-align: left;">Type</th>
+                <th style="padding: 12px; text-align: left;">Quantity</th>
+                <th style="padding: 12px; text-align: left;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for batch in recent_batches|slice:":5" %}
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 12px;"><strong>{{ batch.batch_id }}</strong></td>
+                <td style="padding: 12px;">{{ batch.honey_type }}</td>
+                <td style="padding: 12px;">{{ batch.quantity }} kg</td>
+                <td style="padding: 12px;"><span style="color: #4caf50; font-weight: bold;">{{ batch.status }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<div class="card mt-40">
+    <h2>🐝 Hive Status</h2>
+    {% if recent_hives %}
+    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+        <thead>
+            <tr style="background: #f5f5f5; border-bottom: 2px solid #667eea;">
+                <th style="padding: 12px; text-align: left;">Hive ID</th>
+                <th style="padding: 12px; text-align: left;">Health</th>
+                <th style="padding: 12px; text-align: left;">Population</th>
+                <th style="padding: 12px; text-align: left;">Frames</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hive in recent_hives|slice:":5" %}
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 12px;"><strong>{{ hive.hive_id }}</strong></td>
+                <td style="padding: 12px;">{{ hive.health_status }}</td>
+                <td style="padding: 12px;">{{ hive.population }}</td>
+                <td style="padding: 12px;">{{ hive.honey_frames }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

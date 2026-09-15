@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ - Honey Chain{% endblock %}
+
+{% block page_header %}
+<div class="page-header">
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find Answers to Common Questions</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h3>❓ What is Honey Chain?</h3>
+    <p>
+        Honey Chain is a blockchain-based platform for tracking honey from production to consumer. It provides
+        complete traceability, quality assurance, and authenticity verification for honey products.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ How does blockchain verification work?</h3>
+    <p>
+        Each honey batch is assigned a unique hash using SHA256 cryptography. This hash is recorded on the
+        blockchain, creating an immutable record. Consumers can verify the batch by scanning a QR code,
+        which checks the hash against the blockchain.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ Who can use Honey Chain?</h3>
+    <p>
+        Honey Chain is designed for beekeepers, producers, quality inspectors, distributors, retailers,
+        and consumers. Each user type has specific features and permissions tailored to their role.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ How do I register my hive?</h3>
+    <p>
+        Log in to your dashboard and navigate to "Register Hive". Provide details about your hive including
+        location, beekeeper information, and any IoT sensors. Once registered, your hive data will be
+        monitored in real-time.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ What quality tests are performed?</h3>
+    <p>
+        Our quality testing includes: acidity level measurement, moisture content analysis, color grading,
+        aroma assessment, and purity verification. All results are recorded and available on the batch record.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ How can consumers verify honey authenticity?</h3>
+    <p>
+        Each honey batch comes with a unique QR code. Consumers can scan this code with their smartphone
+        to view the complete batch history, quality tests, and blockchain verification status.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ What IoT sensors do you support?</h3>
+    <p>
+        We support various temperature, humidity, and population sensors. Our system integrates with
+        popular IoT platforms to collect real-time data about hive conditions.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ How is my data protected?</h3>
+    <p>
+        We use token-based JWT authentication, encrypted connections (HTTPS), role-based access control,
+        and regular security audits. Your data is hosted securely and backed up regularly.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ What are the pricing plans?</h3>
+    <p>
+        Contact our sales team for custom pricing. We offer plans for individual beekeepers, small producers,
+        and enterprise clients. Each plan includes different features and support levels.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ How do I get technical support?</h3>
+    <p>
+        Email us at <a href="mailto:support@honeychain.com"
+            style="color: #667eea; text-decoration: none;">support@honeychain.com</a>
+        or fill out our contact form. We typically respond within 24 hours during business days.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ Can I integrate with my existing systems?</h3>
+    <p>
+        Yes, our REST API allows integration with existing systems. We also provide webhooks for real-time
+        event notifications. Contact our development team for integration support.
+    </p>
+</div>
+
+<div class="card mt-40">
+    <h3>❓ What happens if I lose my account credentials?</h3>
+    <p>
+        You can reset your password using the "Forgot Password" link on the login page. You'll receive
+        an email with instructions to create a new password.
+    </p>
+</div>
+
+<div class="card mt-40 text-center">
+    <h2>Still Have Questions?</h2>
+    <p>Can't find the answer you're looking for? Please reach out to our team.</p>
+    <a href="/contact/" class="btn btn-primary mt-20">Contact Us</a>
+</div>
+{% endblock %}

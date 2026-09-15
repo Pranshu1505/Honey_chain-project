@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Honey Chain{% endblock %}
+
+{% block page_header %}
+<div class="page-header">
+    <div class="container">
+        <h1>🍯 Welcome to Honey Chain</h1>
+        <p>Blockchain-Based Honey Traceability & Quality Assurance System</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card text-center mb-40">
+    <p style="font-size: 1.1em; color: #666; line-height: 1.8;">
+        Honey Chain is a comprehensive platform for tracking honey from beehive to consumer using blockchain technology.
+        Monitor hive health, track batches, ensure quality, and verify authenticity with our innovative system.
+    </p>
+    <div style="margin-top: 30px;">
+        <a href="/features/" class="btn btn-primary">Explore Features</a>
+        <a href="/dashboard/" class="btn btn-secondary" style="margin-left: 10px;">Go to Dashboard</a>
+    </div>
+</div>
+
+<h2 style="color: #667eea; margin-bottom: 30px; text-align: center;">📊 System Statistics</h2>
+<div class="grid">
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_beekeepers }}</div>
+        <h3>🧑‍🌾 Beekeepers</h3>
+        <p>Active beekeepers in the system</p>
+    </div>
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_hives }}</div>
+        <h3>🐝 Hives</h3>
+        <p>Monitored hives</p>
+    </div>
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_batches }}</div>
+        <h3>🍺 Batches</h3>
+        <p>Honey batches tracked</p>
+    </div>
+    <div class="grid-item">
+        <div style="font-size: 2.5em; font-weight: bold; color: #667eea;">{{ total_sensors }}</div>
+        <h3>📊 Sensors</h3>
+        <p>IoT sensor readings</p>
+    </div>
+</div>
+
+<div class="card mt-40">
+    <h2>🎯 Key Features</h2>
+    <div class="grid" style="margin-top: 20px;">
+        <div class="grid-item">
+            <h3>📝 Beekeeper Management</h3>
+            <p>Track beekeeper profiles, experience, and honey yields</p>
+        </div>
+        <div class="grid-item">
+            <h3>🐝 Hive Monitoring</h3>
+            <p>Real-time monitoring with IoT sensors</p>
+        </div>
+        <div class="grid-item">
+            <h3>🍯 Batch Tracking</h3>
+            <p>Supply chain tracking from harvest to distribution</p>
+        </div>
+        <div class="grid-item">
+            <h3>✅ Quality Testing</h3>
+            <p>Comprehensive quality assurance testing</p>
+        </div>
+        <div class="grid-item">
+            <h3>⛓️ Blockchain</h3>
+            <p>Immutable records with blockchain verification</p>
+        </div>
+        <div class="grid-item">
+            <h3>📱 QR Codes</h3>
+            <p>QR code generation and verification</p>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-40">
+    <h2>📖 Recent Activity</h2>
+    {% if recent_batches %}
+    <h3>Latest Honey Batches</h3>
+    <div class="grid" style="margin-top: 15px;">
+        {% for batch in recent_batches|slice:":3" %}
+        <div class="grid-item">
+            <strong>Batch {{ batch.batch_id }}</strong><br>
+            Type: {{ batch.honey_type }}<br>
+            Qty: {{ batch.quantity }} kg<br>
+            <span style="color: #4caf50; font-weight: bold;">{{ batch.status }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if recent_hives %}
+    <h3 style="margin-top: 30px;">Latest Hives</h3>
+    <div class="grid" style="margin-top: 15px;">
+        {% for hive in recent_hives|slice:":3" %}
+        <div class="grid-item">
+            <strong>Hive {{ hive.hive_id }}</strong><br>
+            Health: {{ hive.health_status }}<br>
+            Population: {{ hive.population }}<br>
+            Frames: {{ hive.honey_frames }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

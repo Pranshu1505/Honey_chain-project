@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 
-const API_BASE = 'http://192.168.1.11:8000';
+const API_BASE = 'http://localhost:8000';
 
 const QRCodeScanner = ({ token }) => {
     const [scanning, setScanning] = useState(false);

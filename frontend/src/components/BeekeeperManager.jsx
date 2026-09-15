@@ -19,7 +19,7 @@ const BeekeeperManager = ({ token }) => {
 
     const fetchBeekeepers = async () => {
         try {
-            const response = await fetch('http://192.168.1.11:8000/api/beekeeper/profile/', {
+            const response = await fetch('http://localhost:8000/api/beekeeper/profile/', {
                 headers: { 'Authorization': `Token ${token}` }
             });
             const data = await response.json();
@@ -35,7 +35,7 @@ const BeekeeperManager = ({ token }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://192.168.1.11:8000/api/beekeeper/profile/', {
+            const response = await fetch('http://localhost:8000/api/beekeeper/profile/', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Token ${token}`,

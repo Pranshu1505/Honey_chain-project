@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Features - Honey Chain{% endblock %}
+
+{% block page_header %}
+<div class="page-header">
+    <div class="container">
+        <h1>Honey Chain Features</h1>
+        <p>Comprehensive Tools for Honey Traceability</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="grid mb-40">
+    <div class="grid-item">
+        <h3>📝 Beekeeper Management</h3>
+        <p>Complete beekeeper profile management including experience level, certifications, total hives managed, and
+            average honey yields. Track individual beekeeper performance and contributions.</p>
+    </div>
+    <div class="grid-item">
+        <h3>🐝 Hive Monitoring</h3>
+        <p>Real-time monitoring of hive health, population count, honey frame status, and environmental conditions. IoT
+            sensors provide continuous data collection and health indicators.</p>
+    </div>
+    <div class="grid-item">
+        <h3>🍯 Batch Tracking</h3>
+        <p>Track honey batches through the entire supply chain from harvest to consumer. Monitor batch status, quantity,
+            type, and location with complete audit trail.</p>
+    </div>
+    <div class="grid-item">
+        <h3>✅ Quality Testing</h3>
+        <p>Comprehensive quality testing including acidity level, moisture content, color grading, and aroma assessment.
+            Maintain quality standards with detailed test reports.</p>
+    </div>
+    <div class="grid-item">
+        <h3>⛓️ Blockchain Verification</h3>
+        <p>Immutable records on blockchain using SHA256 hashing. Verify authenticity and prevent tampering with
+            cryptographic verification of honey batches.</p>
+    </div>
+    <div class="grid-item">
+        <h3>📱 QR Code Integration</h3>
+        <p>Generate unique QR codes for each honey batch. Allow consumers to verify authenticity and view complete batch
+            history with a simple scan.</p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Advanced Features</h2>
+    <h3>📊 Analytics Dashboard</h3>
+    <p>View comprehensive statistics including total beekeepers, hives, batches, and sensor readings. Monitor system
+        health and track key performance metrics.</p>
+
+    <h3 style="margin-top: 20px;">🔐 Secure Authentication</h3>
+    <p>Token-based authentication with JWT for secure API access. Role-based access control ensures proper data
+        protection and user permissions.</p>
+
+    <h3 style="margin-top: 20px;">📡 Real-Time Sensor Integration</h3>
+    <p>IoT sensor data collection for hive monitoring. Automatic data logging and analysis with threshold-based alerts
+        for abnormal conditions.</p>
+
+    <h3 style="margin-top: 20px;">🌐 Multi-User Support</h3>
+    <p>Support for multiple user roles including beekeepers, quality inspectors, distributors, retailers, and consumers.
+        Each role has specific permissions and dashboard views.</p>
+</div>
+
+<div class="card mt-40 text-center">
+    <h2>Ready to Use Honey Chain?</h2>
+    <p>Start tracking your honey production with our comprehensive platform</p>
+    <a href="/dashboard/" class="btn btn-primary mt-20">Access Dashboard</a>
+</div>
+{% endblock %}

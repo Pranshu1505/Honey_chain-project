@@ -1,5 +1,5 @@
 """Authentication views"""
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -11,9 +11,13 @@ from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, Us
 
 
 class AuthViewSet(viewsets.ModelViewSet):
+    def get_permissions(self):
+        print('ACTION:', self.action)
+        return super().get_permissions()
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
+    permission_classes = [IsAuthenticated]
+
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def register(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -25,7 +29,7 @@ class AuthViewSet(viewsets.ModelViewSet):
                 'token': token.key
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def login(self, request):
         serializer = LoginSerializer(data=request.data)
@@ -42,25 +46,25 @@ class AuthViewSet(viewsets.ModelViewSet):
                 }, status=status.HTTP_200_OK)
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     @action(detail=False, methods=['get', 'put'])
     def profile(self, request):
         try:
             profile = request.user.profile
         except UserProfile.DoesNotExist:
             return Response({'error': 'Profile not found'}, status=status.HTTP_404_NOT_FOUND)
-        
+
         if request.method == 'GET':
             serializer = UserProfileSerializer(profile)
             return Response(serializer.data)
-        
+
         elif request.method == 'PUT':
             serializer = UserProfileSerializer(profile, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     @action(detail=False, methods=['post'])
     def logout(self, request):
         if request.user.is_authenticated:

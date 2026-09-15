@@ -1,14 +1,22 @@
-"""
-URL Configuration for honey_chain project.
-The `urlpatterns` list routes URLs to views.
-"""
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def test_open(request):
+    return Response({'message': 'This is open, no auth needed!'})
+
 
 urlpatterns = [
+    path('', include('apps.core.urls')),
     path('admin/', admin.site.urls),
+    path('api/test-open/', test_open),
     path('api/auth/', include('apps.auth.urls')),
     path('api/beekeeper/', include('apps.beekeeper.urls')),
     path('api/hive/', include('apps.hive.urls')),
@@ -23,6 +31,7 @@ urlpatterns = [
     path('api/retailer/', include('apps.retailer.urls')),
     path('api/consumer/', include('apps.consumer.urls')),
     path('api/notifications/', include('apps.notifications.urls')),
+    path('api/iot/', include('iot.api_routes')),
 ]
 
 if settings.DEBUG:

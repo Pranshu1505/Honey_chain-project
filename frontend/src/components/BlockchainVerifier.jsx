@@ -13,7 +13,7 @@ const BlockchainVerifier = ({ token }) => {
 
     const fetchRecords = async () => {
         try {
-            const response = await fetch('http://192.168.1.11:8000/api/blockchain/records/', {
+            const response = await fetch('http://localhost:8000/api/blockchain/records/', {
                 headers: { 'Authorization': `Token ${token}` }
             });
             const data = await response.json();
@@ -35,7 +35,7 @@ const BlockchainVerifier = ({ token }) => {
 
         try {
             const response = await fetch(
-                `http://192.168.1.11:8000/api/blockchain/records/verify/?batch_id=${searchBatchId}`,
+                `http://localhost:8000/api/blockchain/records/verify/?batch_id=${searchBatchId}`,
                 {
                     headers: { 'Authorization': `Token ${token}` }
                 }
