@@ -1,83 +1,78 @@
 # Core Django Packages
-Django==4.2.0
-djangorestframework==3.14.0
-django-cors-headers==4.3.0
-django-filter==23.5
+Django
+djangorestframework
+django-cors-headers
+django-filter
 
 # Database
 psycopg2-binary>=2.9.9
-sqlalchemy==2.0.23
-db-sqlite3==0.0.1
+sqlalchemy
 
 # Environment Configuration
-python-decouple==3.8
-python-dotenv==1.0.0
+python-decouple
+python-dotenv
 
 # Blockchain & Cryptocurrency
-web3==6.11.0
+web3
 cryptography>=41.0.7
 
 # QR Code & Image Processing
-qrcode==7.4.2
+qrcode
 Pillow>=10.4.0
 
 # API & HTTP
-requests==2.31.0
-httpx==0.25.2
+requests
+httpx
 
 # Task Queue & Caching
-celery==5.3.4
-redis==5.0.0
+celery
+redis
 
 # Production Server
-gunicorn==21.2.0
-whitenoise==6.6.0
+gunicorn
+whitenoise
 
 # Validation & Serialization
-pydantic==2.5.0
-pydantic-settings==2.1.0
+pydantic
+pydantic-settings
 
 # JWT Authentication
-PyJWT==2.8.1
-djangorestframework-simplejwt==5.3.2
+PyJWT
+djangorestframework-simplejwt
 
 # Markdown Support
-markdown==3.5.1
-django-markdown==0.1.9
+markdown
 
 # Pagination
-drf-pagination==0.1.0
 
 # Throttling & Permissions
-django-ratelimit==4.1.0
+django-ratelimit
 
 # Monitoring & Logging
-python-json-logger==2.0.7
+python-json-logger
 
 # Date/Time Utilities
-python-dateutil==2.8.2
-pytz==2023.3
+python-dateutil
+pytz
 
 # Development & Testing
-pytest==7.4.3
-pytest-django==4.7.0
-factory-boy==3.3.0
-faker==21.0.0
+pytest
+pytest-django
+factory-boy
+faker
 
 # Code Quality
-black==23.12.1
-flake8==6.1.0
-isort==5.13.2
-pylint==3.0.3
+black
+flake8
+isort
+pylint
 
 # API Documentation
-drf-yasg==1.21.7
-coreapi==2.3.3
 
 # Security
-django-cors-headers==4.3.0
-django-ratelimit==4.1.0
-django-extensions==3.2.3
+django-cors-headers
+django-ratelimit
+django-extensions
 
 # Optional: AI/ML (for future features)
 scikit-learn>=1.3.2
@@ -85,10 +80,10 @@ numpy>=1.26.3
 pandas>=2.1.3
 
 # Optional: IoT & Data Processing
-pyserial==3.5
-paho-mqtt==1.6.1
+pyserial
+paho-mqtt
 
 # Utilities
-python-slugify==8.0.1
-shortuuid==1.0.11
-dj-database-url==3.1.2
+python-slugify
+shortuuid
+dj-database-url
