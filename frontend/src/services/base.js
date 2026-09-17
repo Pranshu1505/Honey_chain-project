@@ -2,7 +2,7 @@
  * API Base Configuration - Core HTTP client
  */
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
 // Helper function for all API calls
 export const apiCall = async (endpoint, options = {}) => {

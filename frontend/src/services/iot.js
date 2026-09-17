@@ -50,12 +50,12 @@ const IotService = {
     // Streaming (WebSocket support can be added here)
     subscribeToSensorData: (hiveId) => {
         // TODO: Implement WebSocket subscription
-        return `wss://localhost:8000/ws/sensors/${hiveId}/`;
+        return `${import.meta.env.VITE_WS_BASE_URL || "ws://localhost:8000"}/ws/sensors/${hiveId}/`;
     },
 
     subscribeTohiveHealth: (hiveId) => {
         // TODO: Implement WebSocket subscription
-        return `wss://localhost:8000/ws/health/${hiveId}/`;
+        return `${import.meta.env.VITE_WS_BASE_URL || "ws://localhost:8000"}/ws/health/${hiveId}/`;
     },
 };
 
