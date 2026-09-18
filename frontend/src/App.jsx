@@ -123,9 +123,6 @@ function App() {
                 <header className="topbar">
                     <div className="topbar-left">
                         <button className="hamburger-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
-                        {currentPage !== 'dashboard' && (
-                            <button className="back-btn" onClick={() => navigateTo('dashboard')}>← Back</button>
-                        )}
                         <h2 className="topbar-title">{currentLabel}</h2>
                     </div>
                     <div className="topbar-user">
