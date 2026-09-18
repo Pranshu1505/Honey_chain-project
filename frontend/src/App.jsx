@@ -121,10 +121,8 @@ function App() {
 
             <div className="main-wrapper">
                 <header className="topbar">
-                    <div className="topbar-left">
-                        <button className="hamburger-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
-                        <h2 className="topbar-title">{currentLabel}</h2>
-                    </div>
+                    <button className="hamburger-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
+                    <h2 className="topbar-title">{currentLabel}</h2>
                     <div className="topbar-user">
                         <span className="username">{localStorage.getItem('username')} <span className="role-badge">{role}</span></span>
                         <button className="btn-logout" onClick={handleLogout}>Logout</button>
