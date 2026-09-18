@@ -263,7 +263,9 @@
     .topbar-left {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         gap: 10px;
+        flex-wrap: wrap;
     }
 
     .back-btn {
@@ -279,7 +281,9 @@
     .topbar-title {
         font-size: 17px;
         order: 3;
-        flex: 1;
+        text-align: left;
+        margin: 0;
+        flex: 0 0 auto;
     }
 
     .topbar-user {
