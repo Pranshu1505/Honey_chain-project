@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -29,10 +29,31 @@ function App() {
     const [currentPage, setCurrentPage] = useState('dashboard');
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    useEffect(() => {
+        if (!token) return;
+        if (!window.history.state || !window.history.state.page) {
+            window.history.replaceState({ page: 'dashboard' }, '', window.location.pathname);
+        }
+        const handlePopState = (event) => {
+            const page = event.state?.page || 'dashboard';
+            setCurrentPage(page);
+            setSidebarOpen(false);
+        };
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, [token]);
+
+    const navigateTo = (page) => {
+        setCurrentPage(page);
+        setSidebarOpen(false);
+        window.history.pushState({ page }, '', window.location.pathname);
+    };
+
     const handleLogin = (newToken) => {
         setToken(newToken);
         setRole(localStorage.getItem('role') || 'consumer');
         setCurrentPage('dashboard');
+        window.history.replaceState({ page: 'dashboard' }, '', window.location.pathname);
     };
 
     const handleLogout = () => {
@@ -53,7 +74,7 @@ function App() {
     const renderPage = () => {
         switch (currentPage) {
             case 'dashboard':
-                return <Dashboard token={token} onNavigate={setCurrentPage} />;
+                return <Dashboard token={token} onNavigate={navigateTo} />;
             case 'beekeepers':
                 return <BeekeeperManager token={token} />;
             case 'hives':
@@ -88,7 +109,8 @@ function App() {
                         <button
                             key={item.key}
                             className={`sidebar-item ${currentPage === item.key ? 'active' : ''}`}
-                            onClick={() => { setCurrentPage(item.key); setSidebarOpen(false); }}
+                            onClick={() => navigateTo(item.key)}
+                            // onClick={() => { setCurrentPage(item.key); setSidebarOpen(false); }}
                         >
                             <span className="sidebar-icon">{item.icon}</span>
                             <span>{item.label}</span>
