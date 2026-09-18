@@ -275,6 +275,8 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: 90px;
+        color: #4a2c17;
     }
 
     .hamburger-btn {
