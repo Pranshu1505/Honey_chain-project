@@ -12,14 +12,14 @@ import DistributorPanel from './components/DistributorPanel';
 import RetailerPanel from './components/RetailerPanel';
 
 const NAV_ITEMS = [
-    { key: 'dashboard', label: 'Dashboard', icon: '� ', roles: ['admin', 'beekeeper', 'processor', 'distributor', 'retailer', 'consumer'] },
-    { key: 'beekeepers', label: 'Beekeepers', icon: '🧑�🌾', roles: ['admin', 'beekeeper'] },
-    { key: 'hives', label: 'Hives', icon: '�', roles: ['admin', 'beekeeper'] },
+    { key: 'dashboard', label: 'Dashboard', icon: '� ', roles: ['admin', 'beekeeper', 'processor', 'distributor', 'retailer', 'consumer'] },
+    { key: 'beekeepers', label: 'Beekeepers', icon: '🧑�🌾', roles: ['admin', 'beekeeper'] },
+    { key: 'hives', label: 'Hives', icon: '�', roles: ['admin', 'beekeeper'] },
     { key: 'batches', label: 'Batches', icon: '📦', roles: ['admin', 'beekeeper', 'processor'] },
     { key: 'quality', label: 'Quality', icon: '✅', roles: ['admin', 'beekeeper', 'processor'] },
     { key: 'distributorpanel', label: 'Shipments & Inventory', icon: '🚚', roles: ['admin', 'distributor'] },
     { key: 'retailerpanel', label: 'Products & Sales', icon: '🛒', roles: ['admin', 'retailer'] },
-    { key: 'blockchain', label: 'Blockchain', icon: '⛓�', roles: ['admin', 'beekeeper', 'processor', 'distributor', 'retailer', 'consumer'] },
+    { key: 'blockchain', label: 'Blockchain', icon: '⛓�', roles: ['admin', 'beekeeper', 'processor', 'distributor', 'retailer', 'consumer'] },
     { key: 'scan', label: 'Scan QR', icon: '📷', roles: ['admin', 'beekeeper', 'processor', 'distributor', 'retailer', 'consumer'] },
 ];
 
@@ -27,6 +27,7 @@ function App() {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [role, setRole] = useState(localStorage.getItem('role') || 'consumer');
     const [currentPage, setCurrentPage] = useState('dashboard');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const handleLogin = (newToken) => {
         setToken(newToken);
@@ -76,9 +77,10 @@ function App() {
 
     return (
         <div className="app-layout">
-            <aside className="sidebar">
+            {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>}
+            <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-brand">
-                    <span className="brand-icon">�</span>
+                    <span className="brand-icon">�</span>
                     <span className="brand-text">Honey Chain</span>
                 </div>
                 <nav className="sidebar-menu">
@@ -86,7 +88,7 @@ function App() {
                         <button
                             key={item.key}
                             className={`sidebar-item ${currentPage === item.key ? 'active' : ''}`}
-                            onClick={() => setCurrentPage(item.key)}
+                            onClick={() => { setCurrentPage(item.key); setSidebarOpen(false); }}
                         >
                             <span className="sidebar-icon">{item.icon}</span>
                             <span>{item.label}</span>
@@ -97,7 +99,10 @@ function App() {
 
             <div className="main-wrapper">
                 <header className="topbar">
-                    <h2 className="topbar-title">{currentLabel}</h2>
+                    <div className="topbar-left">
+                        <button className="hamburger-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
+                        <h2 className="topbar-title">{currentLabel}</h2>
+                    </div>
                     <div className="topbar-user">
                         <span className="username">{localStorage.getItem('username')} <span className="role-badge">{role}</span></span>
                         <button className="btn-logout" onClick={handleLogout}>Logout</button>
@@ -109,7 +114,7 @@ function App() {
                 </main>
 
                 <footer className="footer">
-                    <p>� Honey Chain - Blockchain-Based Honey Traceability System</p>
+                    <p>� Honey Chain - Blockchain-Based Honey Traceability System</p>
                     <p>Smart India Hackathon 2026 | Problem Statement 26021</p>
                 </footer>
             </div>

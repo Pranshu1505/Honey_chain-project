@@ -189,22 +189,63 @@
     background: #d99000;
 }
 
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #4a2c17;
+    padding: 4px 8px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
 @media (max-width: 900px) {
-    .app-layout {
-        flex-direction: column;
+    .hamburger-btn {
+        display: block;
     }
 
     .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 240px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 99;
     }
 
     .sidebar-menu {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
 
     .sidebar-item {
-        width: auto;
+        width: 100%;
     }
 
     .main-content {
@@ -212,9 +253,6 @@
     }
 
     .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
         padding: 14px 16px;
     }
 
@@ -223,8 +261,16 @@
     }
 
     .topbar-user {
-        width: 100%;
-        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .username {
+        font-size: 13px;
+    }
+
+    .btn-logout {
+        padding: 7px 14px;
+        font-size: 13px;
     }
 }
 
