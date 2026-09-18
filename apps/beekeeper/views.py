@@ -7,12 +7,25 @@ from .models import Apiary, BeekeeperProfile
 from .serializers import ApiarySerializer, BeekeeperProfileSerializer
 
 
+# class ApiaryViewSet(viewsets.ModelViewSet):
+#     serializer_class = ApiarySerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def get_queryset(self):
+#         return Apiary.objects.filter(beekeeper=self.request.user)
+
+#     def perform_create(self, serializer):
+#         serializer.save(beekeeper=self.request.user)
+
 class ApiaryViewSet(viewsets.ModelViewSet):
     serializer_class = ApiarySerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Apiary.objects.filter(beekeeper=self.request.user)
+        user = self.request.user
+        if user.is_staff or user.is_superuser:
+            return Apiary.objects.all()
+        return Apiary.objects.filter(beekeeper=user)
 
     def perform_create(self, serializer):
         serializer.save(beekeeper=self.request.user)
