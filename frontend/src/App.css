@@ -274,3 +274,19 @@
     }
 }
 
+.back-btn {
+    background: none;
+    border: 1px solid #4a2c17;
+    color: #4a2c17;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.back-btn:hover {
+    background: #4a2c17;
+    color: #fff;
+}
