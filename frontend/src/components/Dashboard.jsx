@@ -19,10 +19,10 @@ const Dashboard = ({ token }) => {
             const headers = { 'Authorization': `Token ${token}` };
 
             const [beekeepersRes, hivesRes, sensorsRes, batchesRes] = await Promise.all([
-                fetch('http://localhost:8000/api/beekeeper/apiaries/', { headers }),
-                fetch('http://localhost:8000/api/hive/', { headers }),
-                fetch('http://localhost:8000/api/sensor/', { headers }),
-                fetch('http://localhost:8000/api/batch/', { headers })
+                fetch('https://honey-chain-project-backend.onrender.com/api/beekeeper/apiaries/', { headers }),
+                fetch('https://honey-chain-project-backend.onrender.com/api/hive/', { headers }),
+                fetch('https://honey-chain-project-backend.onrender.com/api/sensor/', { headers }),
+                fetch('https://honey-chain-project-backend.onrender.com/api/batch/', { headers })
             ]);
 
             const beekeepersData = await beekeepersRes.json();

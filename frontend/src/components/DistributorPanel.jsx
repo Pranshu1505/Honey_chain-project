@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = 'https://honey-chain-project-backend.onrender.com';
 
 const DistributorPanel = ({ token }) => {
     const [tab, setTab] = useState('shipments');

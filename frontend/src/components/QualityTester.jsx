@@ -22,10 +22,10 @@ const QualityTester = ({ token }) => {
     const fetchData = async () => {
         try {
             const [testsRes, batchesRes] = await Promise.all([
-                fetch('http://localhost:8000/api/processing/quality-test/', {
+                fetch('https://honey-chain-project-backend.onrender.com/api/processing/quality-test/', {
                     headers: { 'Authorization': `Token ${token}` }
                 }),
-                fetch('http://localhost:8000/api/batch/', {
+                fetch('https://honey-chain-project-backend.onrender.com/api/batch/', {
                     headers: { 'Authorization': `Token ${token}` }
                 })
             ]);
@@ -46,7 +46,7 @@ const QualityTester = ({ token }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8000/api/processing/quality-test/', {
+            const response = await fetch('https://honey-chain-project-backend.onrender.com/api/processing/quality-test/', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Token ${token}`,

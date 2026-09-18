@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://honey-chain-project-backend.onrender.com';
 
 const Login = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('admin');

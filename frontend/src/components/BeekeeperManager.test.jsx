@@ -88,7 +88,7 @@ describe('BeekeeperManager Component Tests', () => {
 
         await waitFor(() => {
             expect(global.fetch).toHaveBeenCalledWith(
-                'http://localhost:8000/api/beekeeper/profiles/',
+                'https://honey-chain-project-backend.onrender.com/api/beekeeper/profiles/',
                 expect.objectContaining({
                     method: 'POST'
                 })

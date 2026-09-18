@@ -13,7 +13,7 @@ const BlockchainVerifier = ({ token }) => {
 
     const fetchRecords = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/blockchain/records/', {
+            const response = await fetch('https://honey-chain-project-backend.onrender.com/api/blockchain/records/', {
                 headers: { 'Authorization': `Token ${token}` }
             });
             const data = await response.json();
@@ -35,7 +35,7 @@ const BlockchainVerifier = ({ token }) => {
 
         try {
             const response = await fetch(
-                `http://localhost:8000/api/blockchain/records/verify/?batch_id=${searchBatchId}`,
+                `https://honey-chain-project-backend.onrender.com/api/blockchain/records/verify/?batch_id=${searchBatchId}`,
                 {
                     headers: { 'Authorization': `Token ${token}` }
                 }
