@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 
-const Dashboard = ({ token }) => {
+const Dashboard = ({ token, onNavigate }) => {
     const [stats, setStats] = useState({
         beekeepers: 0,
         hives: 0,
@@ -43,6 +43,12 @@ const Dashboard = ({ token }) => {
         }
     };
 
+    const handleCardClick = (page) => {
+        if (onNavigate) {
+            onNavigate(page);
+        }
+    };
+
     if (loading) {
         return <div className="dashboard-loading">Loading dashboard...</div>;
     }
@@ -52,7 +58,7 @@ const Dashboard = ({ token }) => {
             <h1>Dashboard</h1>
 
             <div className="stats-grid">
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => handleCardClick('beekeepers')}>
                     <div className="stat-icon">🧑‍🌾</div>
                     <div className="stat-content">
                         <h3>Beekeepers</h3>
@@ -60,7 +66,7 @@ const Dashboard = ({ token }) => {
                     </div>
                 </div>
 
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => handleCardClick('hives')}>
                     <div className="stat-icon">🐝</div>
                     <div className="stat-content">
                         <h3>Hives</h3>
@@ -68,7 +74,7 @@ const Dashboard = ({ token }) => {
                     </div>
                 </div>
 
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => handleCardClick('hives')}>
                     <div className="stat-icon">📡</div>
                     <div className="stat-content">
                         <h3>Sensor Readings</h3>
@@ -76,7 +82,7 @@ const Dashboard = ({ token }) => {
                     </div>
                 </div>
 
-                <div className="stat-card">
+                <div className="stat-card" onClick={() => handleCardClick('batches')}>
                     <div className="stat-icon">📦</div>
                     <div className="stat-content">
                         <h3>Batches</h3>
@@ -85,7 +91,7 @@ const Dashboard = ({ token }) => {
                 </div>
             </div>
 
-            <div className="dashboard-info">
+            <div className="welcome-banner">
                 <h2>Welcome to Honey Chain!</h2>
                 <p>Monitor your honey production, track batches through the supply chain, and verify quality all in one place.</p>
             </div>

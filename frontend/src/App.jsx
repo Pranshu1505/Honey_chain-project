@@ -53,7 +53,7 @@ function App() {
     const renderPage = () => {
         switch (currentPage) {
             case 'dashboard':
-                return <Dashboard token={token} />;
+                return <Dashboard token={token} onNavigate={setCurrentPage} />;
             case 'beekeepers':
                 return <BeekeeperManager token={token} />;
             case 'hives':
