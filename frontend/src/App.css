@@ -252,7 +252,7 @@
         padding: 16px;
     }
 
-        .topbar {
+    .topbar {
         flex-wrap: wrap;
         padding: 14px 16px;
         gap: 10px;
