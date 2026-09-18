@@ -11,8 +11,13 @@ class HiveViewSet(viewsets.ModelViewSet):
     serializer_class = HiveSerializer
     permission_classes = [IsAuthenticated]
     
+    # def get_queryset(self):
+    #     return Hive.objects.filter(apiary__beekeeper=self.request.user)
     def get_queryset(self):
-        return Hive.objects.filter(apiary__beekeeper=self.request.user)
+        user = self.request.user
+        if user.is_staff or user.is_superuser:
+            return Hive.objects.all()
+        return Hive.objects.filter(apiary__beekeeper=user)
     
     @action(detail=True, methods=['get', 'put'])
     def health(self, request, pk=None):
