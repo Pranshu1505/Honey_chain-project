@@ -215,7 +215,7 @@ const QRCodeScanner = ({ token }) => {
                 </button>
             )}
 
-            <div id="qr-reader" ref={scannerRef} style={{ width: '400px', marginTop: '20px' }}></div>
+            <div id="qr-reader" ref={scannerRef} style={{ width: '100%', maxWidth: '400px', marginTop: '20px', margin: '20px auto 0' }}></div>
 
             {error && (
                 <div style={{ marginTop: '16px', padding: '12px', background: '#fed7d7', color: '#c53030', borderRadius: '8px' }}>
