@@ -60,7 +60,7 @@ const QRCodeScanner = ({ token }) => {
                 qrEntry = await genRes.json();
             }
 
-            setQrImage(qrEntry.qr_image);
+            setQrImage(qrEntry.qr_image_base64);
         } catch (err) {
             setQrError('Error: ' + err.message);
         } finally {
@@ -123,7 +123,7 @@ const QRCodeScanner = ({ token }) => {
         if (parsed.batch_id) {
             try {
                 const response = await fetch(
-                    `/api/blockchain/records/verify/?batch_id=${parsed.batch_id}`,
+                    `${API_BASE}/api/blockchain/records/verify/?batch_id=${parsed.batch_id}`,
                     { headers: { 'Authorization': `Token ${token}` } }
                 );
                 const data = await response.json();
@@ -136,7 +136,7 @@ const QRCodeScanner = ({ token }) => {
 
     return (
         <div style={{ padding: '20px' }}>
-            <h1>ðŸ" QR Code Verification</h1>
+            <h1>ï¿½" QR Code Verification</h1>
 
             <div style={{ background: '#f0f4f8', padding: '20px', borderRadius: '12px', marginBottom: '24px' }}>
                 <h3>Show QR Code (scan with any phone)</h3>
@@ -242,7 +242,7 @@ const QRCodeScanner = ({ token }) => {
                     background: verifyResult.verified ? '#c6f6d5' : '#fed7d7',
                     borderRadius: '8px'
                 }}>
-                    <h3>{verifyResult.verified ? 'âœ… Verified!' : 'âŒ Not Verified'}</h3>
+                    <h3>{verifyResult.verified ? 'âœ… Verified!' : 'ï¿½ Not Verified'}</h3>
                     {verifyResult.verified && (
                         <div>
                             <p><strong>Batch:</strong> {verifyResult.record.batch_id}</p>
