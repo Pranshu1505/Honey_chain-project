@@ -75,17 +75,12 @@ const QRCodeScanner = ({ token }) => {
         setScanning(true);
 
         try {
-            const cameras = await Html5Qrcode.getCameras();
-            if (!cameras || cameras.length === 0) {
-                throw new Error('No camera found on this device');
-            }
-
             const html5QrCode = new Html5Qrcode('qr-reader');
             html5QrCodeRef.current = html5QrCode;
 
             await html5QrCode.start(
-                cameras[0].id,
-                { fps: 10, qrbox: { width: 250, height: 250 }, videoConstraints: { width: { ideal: 640 }, height: { ideal: 480 } } },
+                { facingMode: 'environment' },
+                { fps: 10, qrbox: { width: 250, height: 250 } },
                 (decodedText) => {
                     handleScanSuccess(decodedText);
                 },
