@@ -27,7 +27,7 @@ const QRCodeScanner = ({ token }) => {
         try {
             const headers = { 'Authorization': `Token ${token}` };
 
-            const batchesRes = await fetch(`/api/batch/`, { headers });
+            const batchesRes = await fetch(`${API_BASE}/api/batch/`, { headers });
             const batchesData = await batchesRes.json();
             const batchList = Array.isArray(batchesData) ? batchesData : (batchesData.results ?? []);
             const batch = batchList.find(b => b.batch_id === batchIdInput.trim());
@@ -38,13 +38,13 @@ const QRCodeScanner = ({ token }) => {
                 return;
             }
 
-            const qrListRes = await fetch(`/api/qr/`, { headers });
+            const qrListRes = await fetch(`${API_BASE}/api/qr/`, { headers });
             const qrListData = await qrListRes.json();
             const qrList = Array.isArray(qrListData) ? qrListData : (qrListData.results ?? []);
             let qrEntry = qrList.find(q => q.batch === batch.id);
 
             if (!qrEntry) {
-                const createRes = await fetch(`/api/qr/`, {
+                const createRes = await fetch(`${API_BASE}/api/qr/`, {
                     method: 'POST',
                     headers: { ...headers, 'Content-Type': 'application/json' },
                     body: JSON.stringify({ batch: batch.id, code_data: batch.batch_id })
@@ -52,8 +52,8 @@ const QRCodeScanner = ({ token }) => {
                 qrEntry = await createRes.json();
             }
 
-            if (!qrEntry.qr_image) {
-                const genRes = await fetch(`/api/qr/${qrEntry.id}/generate/`, {
+            if (!qrEntry.qr_image_base64)  {
+                const genRes = await fetch(`${API_BASE}/api/qr/${qrEntry.id}/generate/`, {
                     method: 'POST',
                     headers
                 });
