@@ -7,6 +7,7 @@ class QRCode(models.Model):
     batch = models.OneToOneField(HoneyBatch, on_delete=models.CASCADE, related_name='qr_code')
     code_data = models.CharField(max_length=500)
     qr_image = models.ImageField(upload_to='qr_codes/', null=True, blank=True)
+    qr_image_base64 = models.TextField(null=True, blank=True)
     scans = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     

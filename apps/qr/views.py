@@ -10,7 +10,7 @@ from .service import QRCodeService
 class QRCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = QRCode
-        fields = ['id', 'batch', 'code_data', 'qr_image', 'scans', 'created_at']
+        fields = ['id', 'batch', 'code_data', 'qr_image', 'qr_image_base64', 'scans', 'created_at']
         read_only_fields = ['id', 'scans', 'created_at']
 
 
@@ -24,14 +24,13 @@ class QRCodeViewSet(viewsets.ModelViewSet):
         """Generate QR code for a batch"""
         try:
             qr = self.get_object()
-            # Generate QR code
-            qr_image = QRCodeService.generate_qr_code(
+            qr_base64 = QRCodeService.generate_qr_code_base64(
                 qr.batch.batch_id,
                 {'quantity': qr.batch.total_quantity, 'type': qr.batch.honey_type}
             )
-            qr.qr_image = qr_image
+            qr.qr_image_base64 = qr_base64
             qr.save()
-            
+
             serializer = self.get_serializer(qr)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
