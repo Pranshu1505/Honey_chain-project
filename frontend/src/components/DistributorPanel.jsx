@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-const API_BASE = 'https://honey-chain-project-backend.onrender.com';
+import './DistributorPanel.css';
 
 const DistributorPanel = ({ token }) => {
     const [tab, setTab] = useState('shipments');
@@ -92,70 +91,76 @@ const DistributorPanel = ({ token }) => {
         }
     };
 
-    if (loading) return <div style={{ padding: '20px' }}>Loading...</div>;
+    if (loading) return <div className="dp-loading">Loading...</div>;
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="dp-container">
             <h1>📦 Distributor Panel</h1>
 
-            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                <button onClick={() => { setTab('shipments'); setShowForm(false); }}
-                    style={{ padding: '10px 20px', background: tab === 'shipments' ? '#667eea' : '#e2e8f0', color: tab === 'shipments' ? 'white' : '#333', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+            <div className="dp-tabs">
+                <button
+                    className={`dp-tab-btn ${tab === 'shipments' ? 'active' : ''}`}
+                    onClick={() => { setTab('shipments'); setShowForm(false); }}
+                >
                     Shipments
                 </button>
-                <button onClick={() => { setTab('inventory'); setShowForm(false); }}
-                    style={{ padding: '10px 20px', background: tab === 'inventory' ? '#667eea' : '#e2e8f0', color: tab === 'inventory' ? 'white' : '#333', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+                <button
+                    className={`dp-tab-btn ${tab === 'inventory' ? 'active' : ''}`}
+                    onClick={() => { setTab('inventory'); setShowForm(false); }}
+                >
                     Inventory
                 </button>
-                <button onClick={() => setShowForm(!showForm)}
-                    style={{ padding: '10px 20px', background: '#48bb78', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', marginLeft: 'auto' }}>
+                <button
+                    className="dp-new-btn"
+                    onClick={() => setShowForm(!showForm)}
+                >
                     {showForm ? 'Cancel' : `+ New ${tab === 'shipments' ? 'Shipment' : 'Inventory Item'}`}
                 </button>
             </div>
 
             {showForm && tab === 'shipments' && (
-                <form onSubmit={handleShipSubmit} style={{ background: '#f7fafc', padding: '20px', borderRadius: '10px', marginBottom: '20px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-                    <input placeholder="Distributor ID" value={shipForm.distributor} onChange={e => setShipForm({...shipForm, distributor: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Batch ID" value={shipForm.batch_id} onChange={e => setShipForm({...shipForm, batch_id: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Destination" value={shipForm.destination} onChange={e => setShipForm({...shipForm, destination: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Quantity (kg)" type="number" value={shipForm.quantity} onChange={e => setShipForm({...shipForm, quantity: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Expected Delivery (YYYY-MM-DDTHH:MM)" type="datetime-local" value={shipForm.expected_delivery} onChange={e => setShipForm({...shipForm, expected_delivery: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Tracking Number" value={shipForm.tracking_number} onChange={e => setShipForm({...shipForm, tracking_number: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Notes" value={shipForm.notes} onChange={e => setShipForm({...shipForm, notes: e.target.value})} style={{ padding: '8px', gridColumn: 'span 2' }} />
-                    <button type="submit" style={{ padding: '10px', background: '#667eea', color: 'white', border: 'none', borderRadius: '6px', gridColumn: 'span 2' }}>Create Shipment</button>
+                <form onSubmit={handleShipSubmit} className="dp-form">
+                    <input placeholder="Distributor ID" value={shipForm.distributor} onChange={e => setShipForm({...shipForm, distributor: e.target.value})} required />
+                    <input placeholder="Batch ID" value={shipForm.batch_id} onChange={e => setShipForm({...shipForm, batch_id: e.target.value})} required />
+                    <input placeholder="Destination" value={shipForm.destination} onChange={e => setShipForm({...shipForm, destination: e.target.value})} required />
+                    <input placeholder="Quantity (kg)" type="number" value={shipForm.quantity} onChange={e => setShipForm({...shipForm, quantity: e.target.value})} required />
+                    <input placeholder="Expected Delivery" type="datetime-local" value={shipForm.expected_delivery} onChange={e => setShipForm({...shipForm, expected_delivery: e.target.value})} required />
+                    <input placeholder="Tracking Number" value={shipForm.tracking_number} onChange={e => setShipForm({...shipForm, tracking_number: e.target.value})} required />
+                    <input placeholder="Notes" value={shipForm.notes} onChange={e => setShipForm({...shipForm, notes: e.target.value})} className="dp-span-2" />
+                    <button type="submit" className="dp-submit-btn dp-span-2">Create Shipment</button>
                 </form>
             )}
 
             {showForm && tab === 'inventory' && (
-                <form onSubmit={handleInvSubmit} style={{ background: '#f7fafc', padding: '20px', borderRadius: '10px', marginBottom: '20px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-                    <input placeholder="Distributor ID" value={invForm.distributor} onChange={e => setInvForm({...invForm, distributor: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Batch ID" value={invForm.batch_id} onChange={e => setInvForm({...invForm, batch_id: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Honey Type" value={invForm.honey_type} onChange={e => setInvForm({...invForm, honey_type: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Quantity (kg)" type="number" value={invForm.quantity} onChange={e => setInvForm({...invForm, quantity: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Received Date" type="datetime-local" value={invForm.received_date} onChange={e => setInvForm({...invForm, received_date: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Expiry Date" type="date" value={invForm.expiry_date} onChange={e => setInvForm({...invForm, expiry_date: e.target.value})} required style={{ padding: '8px' }} />
-                    <input placeholder="Quality Score (0-100)" type="number" value={invForm.quality_score} onChange={e => setInvForm({...invForm, quality_score: e.target.value})} style={{ padding: '8px' }} />
-                    <input placeholder="Storage Location" value={invForm.storage_location} onChange={e => setInvForm({...invForm, storage_location: e.target.value})} required style={{ padding: '8px' }} />
-                    <button type="submit" style={{ padding: '10px', background: '#667eea', color: 'white', border: 'none', borderRadius: '6px', gridColumn: 'span 2' }}>Add Inventory</button>
+                <form onSubmit={handleInvSubmit} className="dp-form">
+                    <input placeholder="Distributor ID" value={invForm.distributor} onChange={e => setInvForm({...invForm, distributor: e.target.value})} required />
+                    <input placeholder="Batch ID" value={invForm.batch_id} onChange={e => setInvForm({...invForm, batch_id: e.target.value})} required />
+                    <input placeholder="Honey Type" value={invForm.honey_type} onChange={e => setInvForm({...invForm, honey_type: e.target.value})} required />
+                    <input placeholder="Quantity (kg)" type="number" value={invForm.quantity} onChange={e => setInvForm({...invForm, quantity: e.target.value})} required />
+                    <input placeholder="Received Date" type="datetime-local" value={invForm.received_date} onChange={e => setInvForm({...invForm, received_date: e.target.value})} required />
+                    <input placeholder="Expiry Date" type="date" value={invForm.expiry_date} onChange={e => setInvForm({...invForm, expiry_date: e.target.value})} required />
+                    <input placeholder="Quality Score (0-100)" type="number" value={invForm.quality_score} onChange={e => setInvForm({...invForm, quality_score: e.target.value})} />
+                    <input placeholder="Storage Location" value={invForm.storage_location} onChange={e => setInvForm({...invForm, storage_location: e.target.value})} required />
+                    <button type="submit" className="dp-submit-btn dp-span-2">Add Inventory</button>
                 </form>
             )}
 
             {tab === 'shipments' && (
-                shipments.length === 0 ? <p style={{ color: '#888' }}>No shipments found</p> :
+                shipments.length === 0 ? <p className="dp-no-data">No shipments found</p> :
                 shipments.map(s => (
-                    <div key={s.id} style={{ background: 'white', border: '1px solid #eee', borderRadius: '8px', padding: '16px', marginBottom: '10px' }}>
-                        <strong>{s.tracking_number}</strong> - {s.batch_id} �' {s.destination}
-                        <div style={{ color: '#666', fontSize: '14px' }}>Qty: {s.quantity}kg | Status: {s.status}</div>
+                    <div key={s.id} className="dp-card">
+                        <strong>{s.tracking_number}</strong> - {s.batch_id} → {s.destination}
+                        <div className="dp-card-meta">Qty: {s.quantity}kg | Status: {s.status}</div>
                     </div>
                 ))
             )}
 
             {tab === 'inventory' && (
-                inventory.length === 0 ? <p style={{ color: '#888' }}>No inventory found</p> :
+                inventory.length === 0 ? <p className="dp-no-data">No inventory found</p> :
                 inventory.map(i => (
-                    <div key={i.id} style={{ background: 'white', border: '1px solid #eee', borderRadius: '8px', padding: '16px', marginBottom: '10px' }}>
+                    <div key={i.id} className="dp-card">
                         <strong>{i.batch_id}</strong> - {i.honey_type}
-                        <div style={{ color: '#666', fontSize: '14px' }}>Qty: {i.quantity}kg | Location: {i.storage_location} | Status: {i.status}</div>
+                        <div className="dp-card-meta">Qty: {i.quantity}kg | Location: {i.storage_location} | Status: {i.status}</div>
                     </div>
                 ))
             )}

@@ -1,0 +1,113 @@
+.rp-container {
+    padding: 20px;
+}
+
+.rp-loading {
+    padding: 20px;
+}
+
+.rp-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.rp-tab-btn {
+    padding: 10px 20px;
+    background: #e2e8f0;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.rp-tab-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+.rp-new-btn {
+    padding: 10px 20px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.rp-form {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.rp-form input,
+.rp-form select {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+}
+
+.rp-span-2 {
+    grid-column: span 2;
+}
+
+.rp-submit-btn {
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.rp-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.rp-card-meta {
+    color: #666;
+    font-size: 14px;
+}
+
+.rp-no-data {
+    color: #888;
+}
+
+@media (max-width: 700px) {
+    .rp-container {
+        padding: 12px;
+    }
+
+    .rp-tabs {
+        gap: 8px;
+    }
+
+    .rp-tab-btn,
+    .rp-new-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+        flex: 1 1 auto;
+        margin-left: 0;
+    }
+
+    .rp-form {
+        grid-template-columns: 1fr;
+    }
+
+    .rp-span-2 {
+        grid-column: span 1;
+    }
+}

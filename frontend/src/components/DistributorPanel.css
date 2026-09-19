@@ -1,0 +1,112 @@
+.dp-container {
+    padding: 20px;
+}
+
+.dp-loading {
+    padding: 20px;
+}
+
+.dp-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.dp-tab-btn {
+    padding: 10px 20px;
+    background: #e2e8f0;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dp-tab-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+.dp-new-btn {
+    padding: 10px 20px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.dp-form {
+    background: #f7fafc;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.dp-form input {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+}
+
+.dp-span-2 {
+    grid-column: span 2;
+}
+
+.dp-submit-btn {
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dp-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.dp-card-meta {
+    color: #666;
+    font-size: 14px;
+}
+
+.dp-no-data {
+    color: #888;
+}
+
+@media (max-width: 700px) {
+    .dp-container {
+        padding: 12px;
+    }
+
+    .dp-tabs {
+        gap: 8px;
+    }
+
+    .dp-tab-btn,
+    .dp-new-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+        flex: 1 1 auto;
+        margin-left: 0;
+    }
+
+    .dp-form {
+        grid-template-columns: 1fr;
+    }
+
+    .dp-span-2 {
+        grid-column: span 1;
+    }
+}
